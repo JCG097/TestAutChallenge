@@ -9,7 +9,7 @@ import org.testng.Assert;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void loginExitoso() {
+    public void loginSuccess() {
 
 
         LoginPage login = new LoginPage(driver);

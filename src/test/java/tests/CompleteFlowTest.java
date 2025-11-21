@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.InventoryPage;
@@ -24,6 +25,25 @@ public class CompleteFlowTest extends BaseTest {
             // 3. CartPage
             CartPage cartPayment = new CartPage(driver);
             cartPayment.checkoutRedirect();
+
+            // 4. Validación de URL
+            String currentUrl = cartPayment.getCurrentUrl();
+
+            Assert.assertNotNull(currentUrl, "La URL es nula.");
+            Assert.assertTrue(
+                    currentUrl.contains("checkout-step-one"),
+                    "Redirección al checkout fallida. URL actual: " + currentUrl
+            );
+
+            // 5. Validación del título usando la Page correcta
+            CartPage info = new CartPage(driver);
+
+            Assert.assertEquals(
+                    info.getPageTitle(),
+                    "Checkout: Your Information",
+                    "No cargó la pantalla de información del checkout."
+            );
+
         }
 
     }

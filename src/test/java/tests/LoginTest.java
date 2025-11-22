@@ -14,6 +14,7 @@ public class LoginTest extends BaseTest {
 
         LoginPage login = new LoginPage(driver);
 
+        //Login con credenciales validas
         login.login("standard_user","secret_sauce");
         String currentUrl = driver.getCurrentUrl();
         Assert.assertNotNull(currentUrl);
